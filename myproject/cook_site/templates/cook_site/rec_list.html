@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ title }} | {{ block.super }}{% endblock %}
+{% block h1 %}
+{% endblock h1 %}
+{% block main %}
+<h3>Просмотр рецепта:</h3>
+
+
+<form method="post" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>
+
+        {{ text4 }}
+        {% for client in clients %}
+        <li>
+        <a> ID = {{ client.id }}; {{ client.name }}</a>
+        </li>
+        {% endfor %}
+        <br>
+        {{ text }}<br>{{ client.name }}<br>
+
+
+        <br><br><a> {{'Категория:'}}{{ recipes.recipescategory }} <br>{{ recipes.name }} <br> {{ recipes.description }}
+        <br>{{ recipes.cooking_steps }} <br> {{'Автор:'}} {{ recipes.author }} <br>
+    {{'Время приготовления:'}} {{ recipes.cooking_time }} {{"мин"}}<br>
+    </a><br>
+        <input  type="submit" class="btn btn-dark" value="Редактировать"><br>
+
+
+
+
+
+    </label>
+
+    <ul>
+        {% for good in goods %}
+        <li>
+            <b><a> ID = {{ good.id }}, {{ good.name }} </a>
+
+                <div> ЦЕНА: {{ good.price }}, остаток: {{ good.quantity }}</div>
+<!--                <div style=“width: 30px; height: 20px”> ЦЕНА: {{ good.price }}, остаток: {{ good.quantity }}</div>-->
+                <br>
+
+            </b>
+        </li>
+        {% endfor %}
+
+    </ul>
+    </form>
+
+{% endblock main %}
